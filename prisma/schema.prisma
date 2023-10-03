@@ -1,0 +1,80 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model Admin {
+  id           String   @id @default(cuid())
+  name         String?
+  email        String?  @unique
+  username     String   @unique
+  phone        String?
+  password     String
+  permissions  Json?
+  isSuperAdmin Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("admin")
+}
+
+model Class {
+  id             String    @id @default(cuid())
+  name           String
+  classTeacherId String?   @unique
+  classTeacher   Teacher?  @relation(fields: [classTeacherId], references: [id], onDelete: Cascade)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  Subject        Subject[]
+
+  @@map("class")
+}
+
+model Student {
+  id             String    @id @default(cuid())
+  rollNumber     String    @unique
+  name           String    @db.LongText
+  currentClassId String
+  guardianName   String
+  pnone          String
+  password       String
+  isPassedOut    Boolean   @default(false)
+  dateOfJoining  DateTime?
+  dateOfLeaving  DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@map("student")
+}
+
+model Subject {
+  id        String   @id @default(cuid())
+  code      String
+  name      String
+  classId   String?
+  class     Class?   @relation(fields: [classId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([classId])
+  @@map("subject")
+}
+
+model Teacher {
+  id        String   @id @default(cuid())
+  name      String
+  Class     Class?
+  phone     String
+  email     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("teacher")
+}
