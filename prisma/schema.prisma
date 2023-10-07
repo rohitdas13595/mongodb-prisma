@@ -5,13 +5,12 @@ generator client {
 }
 
 datasource db {
-  provider     = "mysql"
-  url          = env("DATABASE_URL")
-  relationMode = "prisma"
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
 }
 
 model Admin {
-  id           String   @id @default(cuid())
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
   name         String?
   email        String?  @unique
   username     String   @unique
@@ -25,56 +24,28 @@ model Admin {
   @@map("admin")
 }
 
-model Class {
-  id             String    @id @default(cuid())
-  name           String
-  classTeacherId String?   @unique
-  classTeacher   Teacher?  @relation(fields: [classTeacherId], references: [id], onDelete: Cascade)
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-  Subject        Subject[]
-
-  @@map("class")
-}
-
-model Student {
-  id             String    @id @default(cuid())
-  rollNumber     String    @unique
-  name           String    @db.LongText
-  currentClassId String
-  guardianName   String
-  pnone          String
-  password       String
-  isPassedOut    Boolean   @default(false)
-  dateOfJoining  DateTime?
-  dateOfLeaving  DateTime?
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-
-  @@map("student")
-}
-
-model Subject {
-  id        String   @id @default(cuid())
-  code      String
-  name      String
-  classId   String?
-  class     Class?   @relation(fields: [classId], references: [id])
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String?
+  email     String?  @unique
+  username  String   @unique
+  phone     String?
+  password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([classId])
-  @@map("subject")
+  @@map("user")
 }
 
-model Teacher {
-  id        String   @id @default(cuid())
-  name      String
-  Class     Class?
-  phone     String
-  email     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model Chat {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  chat       String
+  senderId   String   @db.ObjectId
+  // sender    User     @relation(fields: [senderId], references: [id], name: "char_sender")
+  receiverId String   @db.ObjectId
+  // receiver User @relation(fields: [receiverId], references: [id], name: "chat_receiver")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
-  @@map("teacher")
+  @@map("chat")
 }
