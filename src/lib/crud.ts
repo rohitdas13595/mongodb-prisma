@@ -154,8 +154,10 @@ export class DaoClass {
 
   public async create() {
     try {
+      const body = await this.req.json();
+      // console.log("Request body", body);
       const response = await this.client.create({
-        data: this.req.body,
+        data: body,
       });
       if (response) {
         const result: Result = {
@@ -239,8 +241,8 @@ export class DaoClass {
 
     try {
       const [data, total] = await prisma.$transaction([
-        this.client.findMany(findOptions),
-        this.client.count(findOptions),
+        this.client.findMany(),
+        this.client.count(),
       ]);
       // const students = await prisma.admin.findMany(findOptions);+
       const result: Result = {
