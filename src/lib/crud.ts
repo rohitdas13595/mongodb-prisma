@@ -235,14 +235,14 @@ export class DaoClass {
     }
     let wh: any = {};
 
-    findOptions["where"] = await this.parseFilter1(query);
+    findOptions['where'] = await this.parseFilter1(query);
 
     console.log("findOptions", findOptions);
 
     try {
       const [data, total] = await prisma.$transaction([
-        this.client.findMany(),
-        this.client.count(),
+        this.client.findMany(findOptions),
+        this.client.count(findOptions),
       ]);
       // const students = await prisma.admin.findMany(findOptions);+
       const result: Result = {
