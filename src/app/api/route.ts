@@ -4,12 +4,15 @@ import { NextResponse, NextRequest } from "next/server";
 
 /**
  * @swagger
- * /api/hello:
+ * /api:
  *   get:
- *     description: Returns the hello world
+ *     description: Returns API
  *     responses:
  *       200:
- *         description: Hello World!
+ *         description:
+ *             {
+ *                 result: "Chat App  Server"
+ *            }
  */
 export async function GET(request: Request, { params }: any) {
   // const headersList = headers();

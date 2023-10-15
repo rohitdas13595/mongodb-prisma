@@ -61,7 +61,7 @@ export async function POST(req: NextRequest) {
       const res: Result = {
         error: false,
         statusCode: HttpStatusCode.OK,
-        message: "UserData",
+        message: "User Data",
         result: {
           id: user.id,
           name: user.name,
@@ -71,7 +71,7 @@ export async function POST(req: NextRequest) {
           createdAt: user.createdAt,
           updatedAt: user.updatedAt,
           accessToken: JwtAccessTokenResult.token,
-          refereshToken: jwtRefreshTokenResult.token,
+          refreshToken: jwtRefreshTokenResult.token,
         },
       };
       return NextResponse.json(res, { status: res.statusCode });

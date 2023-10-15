@@ -61,7 +61,7 @@ export async function POST(req: NextRequest) {
           const res: Result = {
             error: true,
             statusCode: HttpStatusCode.INTERNAL_SERVER_ERROR,
-            message: "Somethin Went  Wrong",
+            message: "Error Generating Tokens",
             result: null,
           };
           return NextResponse.json(res, { status: res.statusCode });
@@ -79,7 +79,7 @@ export async function POST(req: NextRequest) {
         const res: Result = {
           error: false,
           statusCode: HttpStatusCode.OK,
-          message: "newUserData",
+          message: "New User Data",
           result: {
             id: newUser.id,
             name: newUser.name,
@@ -89,7 +89,7 @@ export async function POST(req: NextRequest) {
             createdAt: newUser.createdAt,
             updatedAt: newUser.updatedAt,
             accessToken: JwtAccessTokenResult.token,
-            refereshToken: jwtRefreshTokenResult.token,
+            refreshToken: jwtRefreshTokenResult.token,
           },
         };
         return NextResponse.json(res, { status: res.statusCode });
@@ -110,14 +110,13 @@ export async function POST(req: NextRequest) {
     };
     return NextResponse.json(res, { status: res.statusCode });
   } catch (error) {
+    console.log("error", error);
     const res: Result = {
       error: true,
       statusCode: HttpStatusCode.INTERNAL_SERVER_ERROR,
-      message: "Somethin Went  Wrong",
+      message: "Something Went  Wrong",
       result: null,
     };
     return NextResponse.json(res, { status: res.statusCode });
   }
-
-  // const  newUser =  await  prisma.user.findUnique({email: req.body?.email})
 }
