@@ -9,8 +9,8 @@ export async function GET(req: NextRequest, { params }: any) {
   return NextResponse.json(res, { status: res.statusCode });
 }
 
-export async function POST(req: NextRequest) {
-  const dao = new DaoClass(req, prisma.user);
-  const res = await dao.create();
-  return NextResponse.json(res, { status: res.statusCode });
-}
+// export async function POST(req: NextRequest) {
+//   const dao = new DaoClass(req, prisma.user);
+//   const res = await dao.create();
+//   return NextResponse.json(res, { status: res.statusCode });
+// }
