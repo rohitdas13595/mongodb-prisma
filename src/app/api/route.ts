@@ -2,6 +2,18 @@ import { headers } from "next/headers";
 import { HttpStatusCode } from "../../lib/statusCodes";
 import { NextResponse, NextRequest } from "next/server";
 
+/**
+ * @swagger
+ * /api:
+ *   get:
+ *     description: Returns API
+ *     responses:
+ *       200:
+ *         description:
+ *             {
+ *                 result: "Chat App  Server"
+ *            }
+ */
 export async function GET(request: Request, { params }: any) {
   // const headersList = headers();
   // const referer = headersList.get("referer");

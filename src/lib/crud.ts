@@ -152,7 +152,7 @@ export class DaoClass {
     }
   }
 
-  public async create() {
+  public async create():Promise<Result> {
     try {
       const body = await this.req.json();
       // console.log("Request body", body);
