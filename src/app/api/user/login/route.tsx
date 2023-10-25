@@ -15,16 +15,7 @@ import { generateAccessToken, generateRefreshToken } from "@/lib/jwt";
  * @swagger
  * /api/user/login:
  *   post:
- *    requestBody:
  *     description: login user's
- *     consumes:
- *       - application/json
- *    produces:
- *       - application/json
- *    parameters:
- *      - email: body
- *      - password: body
- *     required: true
  *     responses:
  *       200:
  *         description:
