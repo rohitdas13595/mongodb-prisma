@@ -12,6 +12,19 @@ import { has } from "lodash";
 
 //TODO: Create  class validator checks
 
+
+/**
+ * @swagger
+ * /api/user/signup:
+ *   post:
+ *     description: Signup user's
+ *     responses:
+ *       200:
+ *         description:
+ *             {
+ *                 result: "Chat App  Server"
+ *            }
+ */
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
