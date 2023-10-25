@@ -11,6 +11,27 @@ import { generateAccessToken, generateRefreshToken } from "@/lib/jwt";
 
 //TODO: Create  class validator checks
 
+/**
+ * @swagger
+ * /api/user/login:
+ *   post:
+ *    requestBody:
+ *     description: login user's
+ *     consumes:
+ *       - application/json
+ *    produces:
+ *       - application/json
+ *    parameters:
+ *      - email: body
+ *      - password: body
+ *     required: true
+ *     responses:
+ *       200:
+ *         description:
+ *             {
+ *                 result: "Chat App Server"
+ *            }
+ */
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
