@@ -13,15 +13,34 @@ import { generateAccessToken, generateRefreshToken } from "@/lib/jwt";
 
 /**
  * @swagger
- * /api/user/login:
+* /api/user/login:
  *   post:
- *     description: login user's
+ *     tags:
+ *       - user
+ *     description: Login User
+ *     consumes:
+ *       - "application/json"
+ *     produces:
+ *       - "application/json"
+ *     parameters:
+ *       - in: "body"
+ *         name: "body"
+ *         required: true
+ *         schema:
+ *            type: object
+ *            required:
+ *                - email
+ *                - password
+ *            properties:
+ *               email:
+ *                   type: "string"
+ *               password:
+ *                   type: "string"
  *     responses:
+ *       500:
+ *         description: "something went wrong"
  *       200:
- *         description:
- *             {
- *                 result: "Chat App Server"
- *            }
+ *         description: "User Login Successfully"
  */
 export async function POST(req: NextRequest) {
   try {
