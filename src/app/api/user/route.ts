@@ -3,6 +3,30 @@ import { NextResponse, NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { DaoClass } from "@/lib/crud";
 
+/**
+ * @swagger
+ * tags:
+ *   - name: "User"
+ *     description: "Everything related to User"
+ * paths:
+ *   /api/user:
+ *     get:
+ *       tags:
+ *         - user
+ *       description: Get Users
+ *       produces:
+ *         - "application/json"
+ *       parameters:
+ *         - in: query
+ *           name: string
+ *           email: string
+ *           username: string
+ *       responses:
+ *         500:
+ *           description: "something went wrong"
+ *         200:
+ *           description: "Users fetched"
+ */
 export async function GET(req: NextRequest, { params }: any) {
   const dao = new DaoClass(req, prisma.user, params?.id);
   const res = await dao.getMany();

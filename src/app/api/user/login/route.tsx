@@ -11,6 +11,37 @@ import { generateAccessToken, generateRefreshToken } from "@/lib/jwt";
 
 //TODO: Create  class validator checks
 
+/**
+ * @swagger
+* /api/user/login:
+ *   post:
+ *     tags:
+ *       - user
+ *     description: Login User
+ *     consumes:
+ *       - "application/json"
+ *     produces:
+ *       - "application/json"
+ *     parameters:
+ *       - in: "body"
+ *         name: "body"
+ *         required: true
+ *         schema:
+ *            type: object
+ *            required:
+ *                - email
+ *                - password
+ *            properties:
+ *               email:
+ *                   type: "string"
+ *               password:
+ *                   type: "string"
+ *     responses:
+ *       500:
+ *         description: "something went wrong"
+ *       200:
+ *         description: "User Login Successfully"
+ */
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();

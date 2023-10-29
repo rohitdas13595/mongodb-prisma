@@ -12,6 +12,43 @@ import { has } from "lodash";
 
 //TODO: Create  class validator checks
 
+/**
+ * @swagger
+* /api/user/signup:
+ *   post:
+ *     tags:
+ *       - user
+ *     description: Signup User
+ *     consumes:
+ *       - "application/json"
+ *     produces:
+ *       - "application/json"
+ *     parameters:
+ *       - in: "body"
+ *         name: "body"
+ *         required: true
+ *         schema:
+ *            type: object
+ *            required:
+ *                - name
+ *                - email
+ *                - password
+ *                - username
+ *            properties:
+ *               name:
+ *                   type: "string"
+ *               email:
+ *                   type: "string"
+ *               password:
+ *                   type: "string"
+ *               username:
+ *                   type: "string"
+ *     responses:
+ *       500:
+ *         description: "something went wrong"
+ *       200:
+ *         description: "User Signup Successfully"
+ */
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();

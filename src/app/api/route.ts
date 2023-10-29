@@ -4,10 +4,14 @@ import { NextResponse, NextRequest } from "next/server";
 
 /**
  * @swagger
- * /api:
+* /api:
  *   get:
+ *     tags:
+ *       - user
  *     description: Returns API
  *     responses:
+ *       500:
+ *         description: "something went wrong"
  *       200:
  *         description:
  *             {
