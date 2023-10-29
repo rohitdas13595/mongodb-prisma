@@ -14,6 +14,8 @@ import { NextResponse, NextRequest } from "next/server";
  *                 result: "Chat App  Server"
  *            }
  */
+
+
 export async function GET(request: Request, { params }: any) {
   // const headersList = headers();
   // const referer = headersList.get("referer");
